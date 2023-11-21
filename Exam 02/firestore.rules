@@ -1,0 +1,147 @@
+rules_version = '2';
+service cloud.firestore {
+	match /databases/{database}/documents {
+		match /{visInventario}/{document=**}{
+			allow read:if true;
+			allow create: if request.resource.data.Provedor is string &&
+				request.resource.data.Categoria is string &&
+				request.resource.data.Codigo is int &&
+				request.resource.data.Producto is string &&
+				request.resource.data.Precio_Uni is string &&
+                request.resource.data.Existencia is int &&
+                request.resource.data.Tot_Linea is string;
+			allow update: if true;
+			allow delete: if false;
+		}
+
+		match /{visProd_x_Categ}/{document=**}{
+			allow read:if true;
+			allow create: if request.resource.data.CategoryName is string &&
+				request.resource.data.ProductID is int &&
+				request.resource.data.ProductName is string;
+			allow update: if true;
+			allow delete: if false;
+		}
+
+		match /{vistita}/{document=**}{
+			allow read:if true;
+			allow create: if request.resource.data.Categoria is string &&
+				request.resource.data.Cantidad is string;
+			allow update: if true;
+			allow delete: if false;
+		}
+
+		match /{usuarios}/{document=**}{
+			allow read:if true;
+			allow create: if request.resource.data.usuario is string &&
+				request.resource.data.contra is string;
+			allow update: if true;
+			allow delete: if false;
+		}
+
+		match /{categories}/{document=**}{
+			allow read:if true;
+			allow create: if request.resource.data.CategoryID is string &&
+				request.resource.data.CategoryName is string &&
+				request.resource.data.Description is string &&
+				request.resource.data.Imagen is string;
+			allow update: if true;
+			allow delete: if true;
+		}
+
+		match /{customers}/{document=**}{
+			allow read:if true;
+			allow create: if request.resource.data.CustomerID is string &&
+				request.resource.data.CompanyName is string &&
+				request.resource.data.ContactName is string &&
+				request.resource.data.ContactTitle is string &&
+                request.resource.data.Address is string &&
+				request.resource.data.City is string &&
+				request.resource.data.Region is string &&
+				request.resource.data.PostalCode is string &&
+				request.resource.data.Country is string &&
+				request.resource.data.Phone is string &&
+				request.resource.data.Fax is string;
+			allow update: if true;
+			allow delete: if false;
+		}
+
+		match /{employees}/{document=**}{
+			allow read:if true;
+			allow create: if request.resource.data.EmployeeID is string &&
+				request.resource.data.LastName is string &&
+				request.resource.data.FirstName is string &&
+				request.resource.data.Title is string &&
+				request.resource.data.TitleOfCourtesy is string &&
+				request.resource.data.BirthDate is string &&
+				request.resource.data.HireDate is string &&
+				request.resource.data.Address is string &&
+				request.resource.data.City is string &&
+				request.resource.data.Region is string &&
+				request.resource.data.PostalCode is string &&
+				request.resource.data.Country is string &&
+				request.resource.data.HomePhone is string &&
+				request.resource.data.Extension is string &&
+				request.resource.data.Photo is string &&
+				request.resource.data.Notes is string &&
+				request.resource.data.ReportsTo is string;
+			allow update: if true;
+			allow delete: if false;
+		}
+
+
+		match /{order_details}/{document=**}{
+			allow read:if true;
+			allow create: if request.resource.data.OrderID is string &&
+				request.resource.data.ProductID is string &&
+				request.resource.data.UnitPrice is string &&
+				request.resource.data.Quantity is string &&
+				request.resource.data.Discount is string;
+			allow update: if true;
+			allow delete: if false;
+		}
+
+		match /{shippers}/{document=**}{
+			allow read:if true;
+			allow create: if request.resource.data.ShipperID is string &&
+				request.resource.data.CompanyName is string &&
+				request.resource.data.Phone is string;
+			allow update: if true;
+			allow delete: if false;
+		}
+
+		match /{products}/{document=**}{
+			allow read:if true;
+			allow create: if request.resource.data.ProductID is string &&
+				request.resource.data.ProductName is string &&
+				request.resource.data.SupplierID is string &&
+				request.resource.data.CategoryID is string &&
+                request.resource.data.QuantityPerUnit is string &&
+                request.resource.data.UnitPrice is string &&
+                request.resource.data.UnitsInStock is int &&
+                request.resource.data.UnitsOnOrder is int &&
+                request.resource.data.ReorderLevel is int &&
+				request.resource.data.Discontinued is string;
+			allow update: if true;
+			allow delete: if false;
+		}
+
+		match /{suppliers}/{document=**}{
+			allow read:if true;
+			allow create: if request.resource.data.SupplierID is string &&
+				request.resource.data.CompanyName is string &&
+				request.resource.data.ContactName is string &&
+				request.resource.data.ContactTitle is string &&
+                request.resource.data.Address is string &&
+                request.resource.data.City is string &&
+                request.resource.data.Region is string &&
+                request.resource.data.PostalCode is string &&
+                request.resource.data.Country is string &&
+                request.resource.data.Phone is string &&
+                request.resource.data.Fax is string &&
+				request.resource.data.HomePage is string;
+			allow update: if true;
+			allow delete: if false;
+		}
+	}
+}
